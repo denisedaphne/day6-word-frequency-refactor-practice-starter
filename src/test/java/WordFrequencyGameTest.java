@@ -7,56 +7,56 @@ public class WordFrequencyGameTest {
     @Test
     public void should_get_the_1_when_input_the() {
         //Given
-        String inputStr = "the";
-        String expectResult = "the 1";
-        validate_Input_words_process_to_expected_word(inputStr, expectResult);
+        String word = "the";
+        String result = "the 1";
+        validate_Input_words_process_to_expected_word(word, result);
     }
 
     @Test
     public void should_process_two_words() {
         //Given
-        String inputStr = "the is";
-        String expectResult = "the 1\nis 1";
-        validate_Input_words_process_to_expected_word(inputStr, expectResult);
+        String input = "the is";
+        String result = "the 1\nis 1";
+        validate_Input_words_process_to_expected_word(input, result);
     }
 
     @Test
     public void should_process_two_words_with_special_spaces() {
         //Given
-        String inputStr = "the      is";
-        String expectResult = "the 1\nis 1";
-        validate_Input_words_process_to_expected_word(inputStr, expectResult);
+        String input = "the      is";
+        String result = "the 1\nis 1";
+        validate_Input_words_process_to_expected_word(input, result);
     }
 
     @Test
     public void should_process_two_words_with_special_enter() {
         //Given
-        String inputStr = "the   \n   is";
-        String expectResult = "the 1\nis 1";
-        validate_Input_words_process_to_expected_word(inputStr, expectResult);
+        String input = "the   \n   is";
+        String result = "the 1\nis 1";
+        validate_Input_words_process_to_expected_word(input, result);
     }
 
     @Test
     public void should_process_two_same_words_with_sorted() {
         //Given
-        String inputStr = "the the is";
-        String expectResult = "the 2\nis 1";
-        validate_Input_words_process_to_expected_word(inputStr, expectResult);
+        String input = "the the is";
+        String result = "the 2\nis 1";
+        validate_Input_words_process_to_expected_word(input, result);
     }
 
     @Test
     public void should_process_sorted_with_count_descending() {
         //Given
-        String inputStr = "the is is";
-        String expectResult = "is 2\nthe 1";
-        validate_Input_words_process_to_expected_word(inputStr, expectResult);
+        String input = "the is is";
+        String result = "is 2\nthe 1";
+        validate_Input_words_process_to_expected_word(input, result);
     }
 
-    private void validate_Input_words_process_to_expected_word(String inputStr, String expectResult) {
-        WordFrequencyGame game = new WordFrequencyGame();
+    private void validate_Input_words_process_to_expected_word(String input, String actualResult) {
+        WordFrequencyGame wordFrequencyGame = new WordFrequencyGame();
         //When
-        String result = game.getResult(inputStr);
+        String expectedResult = wordFrequencyGame.getResult(input);
         //Then
-        assertThat(result).isEqualTo(expectResult);
+        assertThat(expectedResult).isEqualTo(actualResult);
     }
 }
