@@ -1,8 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
@@ -28,22 +24,15 @@ public class WordFrequencyGame {
 
     private List<WordFrequencyInfo> getWordFrequencyInfosList(String inputStr) {
         String[] words = inputStr.split(SPACE_DELIMITER);
-        List<WordFrequencyInfo> wordFrequencyInfoList = new ArrayList<>();
-        for (String word : words) {
-            WordFrequencyInfo wordFrequencyInfo = new WordFrequencyInfo(word, 1);
-            wordFrequencyInfoList.add(wordFrequencyInfo);
-        }
+
+        List<WordFrequencyInfo> wordFrequencyInfoList = Arrays.stream(words)
+                .map(word -> new WordFrequencyInfo(word, 1))
+                .collect(Collectors.toList());
 
         Map<String, List<WordFrequencyInfo>> wordFrequencyMap = getListMap(wordFrequencyInfoList);
-        List<WordFrequencyInfo> frequencyInfos = new ArrayList<>();
-        for (Map.Entry<String, List<WordFrequencyInfo>> entry : wordFrequencyMap.entrySet()) {
-            WordFrequencyInfo wordFrequencyInfo = new WordFrequencyInfo(entry.getKey(), entry.getValue().size());
-            frequencyInfos.add(wordFrequencyInfo);
-        }
 
-        wordFrequencyInfoList = frequencyInfos;
-        wordFrequencyInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
-        return wordFrequencyInfoList;
+        return wordFrequencyMap.entrySet().stream()
+                .map(entry -> new WordFrequencyInfo(entry.getKey(), entry.getValue().size())).sorted((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount()).collect(Collectors.toList());
     }
 
     private static String generatePrintLines(List<WordFrequencyInfo> wordFrequencyInfoList) {
