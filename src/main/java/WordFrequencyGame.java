@@ -11,14 +11,13 @@ public class WordFrequencyGame {
     public String getResult(String inputStr) {
         if (inputStr.split(SPACE_DELIMITER).length == 1) {
             return inputStr + " 1";
-        } else {
-            try {
-                List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfosList(inputStr);
+        }
+        try {
+            List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfosList(inputStr);
 
-                return generatePrintLines(wordFrequencyInfoList);
-            } catch (Exception e) {
-                return CALCULATE_ERROR;
-            }
+            return generatePrintLines(wordFrequencyInfoList);
+        } catch (Exception e) {
+            return CALCULATE_ERROR;
         }
     }
 
