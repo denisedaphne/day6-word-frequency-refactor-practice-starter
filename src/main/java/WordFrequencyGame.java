@@ -31,7 +31,7 @@ public class WordFrequencyGame {
         Map<String, List<WordFrequencyInfo>> wordFrequencyMap = getListMap(wordFrequencyInfoList);
 
         return wordFrequencyMap.entrySet().stream()
-                .map(entry -> new WordFrequencyInfo(entry.getKey(), entry.getValue().size())).sorted((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount()).collect(Collectors.toList());
+                .map(currentWords -> new WordFrequencyInfo(currentWords.getKey(), currentWords.getValue().size())).sorted((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount()).collect(Collectors.toList());
     }
 
     private static String generatePrintLines(List<WordFrequencyInfo> wordFrequencyInfoList) {
