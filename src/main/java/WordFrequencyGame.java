@@ -8,12 +8,12 @@ public class WordFrequencyGame {
     public static final String SPACE_CHAR = " ";
     public static final String CALCULATE_ERROR = "Calculate Error";
 
-    public String getResult(String inputStr) {
-        if (inputStr.split(SPACE_DELIMITER).length == 1) {
-            return inputStr + " 1";
+    public String getResult(String inputWords) {
+        if (inputWords.split(SPACE_DELIMITER).length == 1) {
+            return inputWords + " 1";
         }
         try {
-            List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfosList(inputStr);
+            List<WordFrequencyInfo> wordFrequencyInfoList = getWordFrequencyInfosList(inputWords);
 
             return generatePrintLines(wordFrequencyInfoList);
         } catch (Exception e) {
@@ -21,8 +21,8 @@ public class WordFrequencyGame {
         }
     }
 
-    private List<WordFrequencyInfo> getWordFrequencyInfosList(String inputStr) {
-        String[] words = inputStr.split(SPACE_DELIMITER);
+    private List<WordFrequencyInfo> getWordFrequencyInfosList(String inputWords) {
+        String[] words = inputWords.split(SPACE_DELIMITER);
 
         List<WordFrequencyInfo> wordFrequencyInfoList = Arrays.stream(words)
                 .map(word -> new WordFrequencyInfo(word, 1))
