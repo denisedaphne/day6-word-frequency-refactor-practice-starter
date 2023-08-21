@@ -6,16 +6,11 @@ import java.util.StringJoiner;
 
 public class WordFrequencyGame {
     public String getResult(String inputStr) {
-
-
         if (inputStr.split("\\s+").length == 1) {
             return inputStr + " 1";
         } else {
-
             try {
-
                 String[] arr = inputStr.split("\\s+");
-
                 List<Input> inputList = new ArrayList<>();
                 for (String s : arr) {
                     Input input = new Input(s, 1);
@@ -23,14 +18,13 @@ public class WordFrequencyGame {
                 }
 
                 Map<String, List<Input>> map = getListMap(inputList);
-
                 List<Input> list = new ArrayList<>();
                 for (Map.Entry<String, List<Input>> entry : map.entrySet()) {
                     Input input = new Input(entry.getKey(), entry.getValue().size());
                     list.add(input);
                 }
-                inputList = list;
 
+                inputList = list;
                 inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
                 StringJoiner joiner = new StringJoiner("\n");
@@ -40,13 +34,10 @@ public class WordFrequencyGame {
                 }
                 return joiner.toString();
             } catch (Exception e) {
-
-
                 return "Calculate Error";
             }
         }
     }
-
 
     private Map<String, List<Input>> getListMap(List<Input> inputList) {
         Map<String, List<Input>> map = new HashMap<>();
@@ -59,10 +50,6 @@ public class WordFrequencyGame {
                 map.get(input.getValue()).add(input);
             }
         }
-
-
         return map;
     }
-
-
 }
